@@ -1,8 +1,9 @@
 <?php
 declare(strict_types=1);
-require __DIR__ . '/../vendor/autoload.php';
-
-$pdo = new PDO('mysql:host=db;dbname=konference;charset=utf8mb4', 'app', 'app', [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-]);
-echo 'Web i databáze fungují.';
+require_once __DIR__.'/../src/Core/Database.php';
+$pdo = (new Database())->getPdo();
+$vysledek=$pdo->query('SELECT nazev FROM Role;');
+$radky=$vysledek->fetchAll();
+foreach ($radky as $radek){
+    echo($radek['nazev']."<br>");
+}
