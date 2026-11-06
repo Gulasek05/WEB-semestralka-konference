@@ -1,0 +1,8 @@
+RewriteEngine On
+
+# pokud požadovaný soubor neexistuje...
+RewriteCond %{REQUEST_FILENAME} !-f
+# ...a není to ani existující složka...
+RewriteCond %{REQUEST_FILENAME} !-d
+# ...pošli požadavek do index.php (QSA zachová parametry v URL)
+RewriteRule ^ index.php [QSA,L]
