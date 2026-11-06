@@ -1,4 +1,6 @@
 <?php
+namespace App\Core;
+use PDO;
 class Database{
     private $pdo;
     private $dsn = 'mysql:host=db;dbname=konference;charset=utf8mb4';
