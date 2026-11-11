@@ -1,0 +1,32 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Registrace | GameDev Conf{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-4">
+        <h1>Registrace</h1>
+    <form method="post" action="/register">
+    <div class="mb-3">
+      <label class="form-label" for="username">Uživatelské jméno</label>
+      <input type="text" name="username" class="form-control" id="username" placeholder="Jane Doe" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="email">Email</label>
+      <input type="email" name="email" class="form-control" id="email" placeholder="email@example.com" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="password">Heslo</label>
+      <input type="password" name="password" class="form-control" id="password" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="password_again">Heslo znovu</label>
+      <input type="password" name="password_again" class="form-control" id="password_again" required>
+    </div>
+    <div class="mb-3">
+      <button type="submit" class="btn btn-primary">Registrovat</button>
+    </div>
+</form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Úvod | GameDev Conf{% endblock %}
+
+{% block content %}
+{# slouží pro načtení názvu z PHP a zároveň {{ }} brání proti XSS #}
+    <h1>{{ nadpis }}</h1> 
+    <p>Konference o vývoji videoher.</p>
+{% endblock %}

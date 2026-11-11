@@ -1,10 +1,19 @@
 <?php
 namespace App\Controller;
-class HomeController{
-    public function index(){
-        echo ("úvodní stránka");
+
+use App\Core\Controller;
+
+class HomeController extends Controller
+{
+    //vykreslení stránek
+    public function index()
+    {
+        $this->render('home/index.html.twig', ['nadpis' => 'Vítejte']);
     }
-    public function o_nas(){
-        echo("info o mě a mém kamarádovi");
+    public function register(){
+        $this->render('auth/register.html.twig', []);
+    }
+    public function login(){
+        $this->render('auth/login.html.twig', []);
     }
 }

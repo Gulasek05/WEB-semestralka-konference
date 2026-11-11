@@ -8,7 +8,8 @@ class Router
     // tabulka rout: cesta => [třída controlleru, název metody]
     private array $routes = [
         'home' => [HomeController::class, 'index'],
-        'o_nas' => [HomeController::class, 'o_nas'],
+        'register'=>[HomeController::class, 'register'],
+        'login'=>[HomeController::class, 'login'],
         // další cesty přidáš později (login, register...)
     ];
 
