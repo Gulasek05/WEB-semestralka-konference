@@ -16,4 +16,7 @@ class HomeController extends Controller
     public function login(){
         $this->render('auth/login.html.twig', []);
     }
+    public function test(){
+       echo ('poser se');
+    }
 }
