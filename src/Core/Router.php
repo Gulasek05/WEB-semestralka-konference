@@ -10,7 +10,9 @@ class Router
         'home' => [HomeController::class, 'index'],
         'register'=>[HomeController::class, 'register'],
         'login'=>[HomeController::class, 'login'],
-        'register' => [AuthController::class, 'register']
+        'register' => [AuthController::class, 'register'],
+        'login' => [AuthController::class, 'login'],
+        'logout' => [AuthController::class, 'logout'],
         // další cesty přidáš později (login, register...)
     ];
 

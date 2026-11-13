@@ -67,4 +67,52 @@ class AuthController extends Controller
             'email' => $email,
         ]);
     }
+
+     /** Přihlášení: GET zobrazí formulář, POST ověří údaje. */
+    public function login()
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            $this->render('auth/login.html.twig');
+            return;
+        }
+
+        $email = trim($_POST['email'] ?? '');
+        $heslo = $_POST['password'] ?? '';
+        $chyba = 'Nesprávný e-mail nebo heslo.';
+        $uzivatel = (new UserModel())->findByEmail($email);
+
+        // Heslo ověř vždy přes password_verify (druhý parametr je hash z databáze)
+        if ($uzivatel && password_verify($heslo, $uzivatel['heslo_hash'])) {
+            // TODO: je uživatel zablokovaný? (sloupec blocked) -> chyba "Účet je zablokován."
+            if ($uzivatel['blocked']){
+                $chyba='Účet je zablokován.';
+            }
+            else{
+            session_regenerate_id(true);
+            $_SESSION['user'] = [
+                'id' => $uzivatel['id'],
+                'username' => $uzivatel['username'],
+                'role' => $uzivatel['role'],
+            ];
+            header('Location: /home');
+            exit;
+            }
+        }
+
+        // Jedna obecná hláška: nikdy neříkej, jestli špatně je e-mail, nebo heslo
+        $this->render('auth/login.html.twig', [
+            'chyba' => $chyba,
+            'email' => $email,
+        ]);
+    }
+
+    /** Odhlášení: zruší session a vrátí na úvod. */
+    public function logout()
+    {
+        $_SESSION=[];
+        session_destroy();
+        header('Location: /home');
+        exit;
+        // a přesměruj na /home (header + exit)
+    }
 }

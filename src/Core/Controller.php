@@ -7,11 +7,11 @@ use Twig\Loader\FilesystemLoader;
 abstract class Controller
 {
     private Environment $twig;
-
     public function __construct()
     {
         $loader = new FilesystemLoader(__DIR__ . '/../../templates');
         $this->twig = new Environment($loader, ['cache' => false]);
+        $this->twig->addGlobal('user', $_SESSION['user'] ?? null);
     }
 
     protected function render(string $sablona, array $data = []): void

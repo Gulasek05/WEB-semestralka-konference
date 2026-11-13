@@ -20,7 +20,10 @@ class UserModel
     /** Najde uživatele podle e-mailu. Vrátí řádek, nebo false, pokud neexistuje. */
     public function findByEmail(string $email): array|false
     {
-        $stmt = $this->pdo->prepare('SELECT * FROM Uzivatel WHERE email = :email');
+        $stmt = $this->pdo->prepare('SELECT u.*, r.nazev AS role
+                                    FROM Uzivatel u
+                                    JOIN Role r ON r.id = u.role_id
+                                    WHERE u.email = :email');
         $stmt->execute(['email' => $email]);
         return $stmt->fetch();
     }

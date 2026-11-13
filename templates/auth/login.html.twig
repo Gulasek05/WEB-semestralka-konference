@@ -6,10 +6,15 @@
 <div class="row justify-content-center">
     <div class="col-md-6 col-lg-4">
         <h1>Přihlášení</h1>
+          {% if chyba is defined %}
+            {% for chyba in chyba %}
+              <div class="alert alert-danger">{{ chyba }}</div>
+            {% endfor %}
+          {% endif %}
     <form method="post" action="/login">
     <div class="mb-3">
       <label class="form-label" for="email">Email</label>
-      <input type="email" name="email" class="form-control" id="email" placeholder="email@example.com" required>
+      <input type="email" name="email" class="form-control" id="email" placeholder="email@example.com" value="{{ email|default('') }}" required>
     </div>
     <div class="mb-3">
       <label class="form-label" for="password">Heslo</label>
