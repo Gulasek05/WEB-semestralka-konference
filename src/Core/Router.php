@@ -2,7 +2,7 @@
 namespace App\Core;
 
 use App\Controller\HomeController;
-
+use App\Controller\AuthController;
 class Router
 {
     // tabulka rout: cesta => [třída controlleru, název metody]
@@ -10,6 +10,7 @@ class Router
         'home' => [HomeController::class, 'index'],
         'register'=>[HomeController::class, 'register'],
         'login'=>[HomeController::class, 'login'],
+        'register' => [AuthController::class, 'register']
         // další cesty přidáš později (login, register...)
     ];
 

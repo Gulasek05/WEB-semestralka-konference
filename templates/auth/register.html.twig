@@ -6,14 +6,19 @@
 <div class="row justify-content-center">
     <div class="col-md-6 col-lg-4">
         <h1>Registrace</h1>
+        {% if chyby is defined %}
+          {% for chyba in chyby %}
+            <div class="alert alert-danger">{{ chyba }}</div>
+          {% endfor %}
+        {% endif %}
     <form method="post" action="/register">
     <div class="mb-3">
       <label class="form-label" for="username">Uživatelské jméno</label>
-      <input type="text" name="username" class="form-control" id="username" placeholder="Jane Doe" required>
+      <input type="text" name="username" class="form-control" id="username" placeholder="Jane Doe" value="{{ username|default('') }}" required>
     </div>
     <div class="mb-3">
       <label class="form-label" for="email">Email</label>
-      <input type="email" name="email" class="form-control" id="email" placeholder="email@example.com" required>
+      <input type="email" name="email" class="form-control" id="email" placeholder="email@example.com" value="{{ email|default('') }}" required>
     </div>
     <div class="mb-3">
       <label class="form-label" for="password">Heslo</label>
